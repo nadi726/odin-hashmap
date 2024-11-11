@@ -64,4 +64,16 @@ class HashMap
   def clear
     @buckets = Array.new(@capacity) { LinkedList.new }
   end
+
+  def keys
+    @buckets.sum([]) { |list| list.map(&:key) }
+  end
+
+  def values
+    @buckets.sum([]) { |list| list.map(&:value) }
+  end
+
+  def entries
+    @buckets.sum([]) { |list| list.map { |node| [node.key, node.value] } }
+  end
 end

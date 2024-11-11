@@ -18,7 +18,7 @@ test.set('lion', 'goldenROCK')
 test.set('hahahaha', 'ha')
 test.set('Bucket', 'ha')
 
-# p test
+p test
 p test.get('apple')
 p test.get('lion')
 p test.get('ha')
@@ -31,3 +31,7 @@ p test.get('lion')
 
 p test.length
 p HashMap.new.length
+
+p test.keys
+p test.values
+p test.entries

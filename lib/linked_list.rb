@@ -169,4 +169,16 @@ class LinkedList
       node = node.next_node
     end
   end
+
+  def map
+    arr = []
+    node = @head
+    return arr if node.nil?
+
+    while node
+      arr.append(yield node)
+      node = node.next_node
+    end
+    arr
+  end
 end
