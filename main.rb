@@ -15,10 +15,31 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 test.set('lion', 'goldenROCK')
-test.set('hahahaha', 'ha')
-test.set('Bucket', 'ha')
 
-p test
+puts test
+p test.get('apple')
+p test.get('lion')
+p test.get('ha')
+
+p test.has?('kite')
+p test.has?('kitte')
+
+test.remove('lion')
+p test.get('lion')
+
+p test.length
+p HashMap.new.length
+
+p test.keys
+p test.values
+p test.entries
+
+test.set('Bucket', 'ha')
+test.set('hello', 'hi')
+test.set('AAAAAAAAA', 'a')
+test.set('Walla', 'hi')
+
+puts test
 p test.get('apple')
 p test.get('lion')
 p test.get('ha')

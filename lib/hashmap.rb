@@ -10,27 +10,6 @@ class HashMap
     @buckets = Array.new(@capacity) { LinkedList.new }
   end
 
-  def validate_bucket(index)
-    raise IndexError if index.negative? || index >= @buckets.length
-
-    @buckets[index]
-  end
-
-  def hash(key)
-    hash_code = 0
-    prime_number = 31
-
-    key.each_char { |char| hash_code = (prime_number * hash_code) + char.ord }
-
-    hash_code % @capacity
-  end
-
-  def get_list(key)
-    bucket_index = hash(key)
-    validate_bucket(bucket_index)
-    @buckets[bucket_index]
-  end
-
   def set(key, value)
     list = get_list key
     list_node = list.find(key)
@@ -40,6 +19,10 @@ class HashMap
     else
       list_node.value = value
     end
+
+    return unless length > @capacity * @load_factor
+
+    grow
   end
 
   def get(key)
@@ -75,5 +58,42 @@ class HashMap
 
   def entries
     @buckets.sum([]) { |list| list.map { |node| [node.key, node.value] } }
+  end
+
+  def to_s
+    @buckets.map.with_index { |list, index| "#{index}: #{list}" }.join("\n")
+  end
+
+  private
+
+  def validate_bucket(index)
+    raise IndexError if index.negative? || index >= @buckets.length
+
+    @buckets[index]
+  end
+
+  def hash(key)
+    hash_code = 0
+    prime_number = 31
+
+    key.each_char { |char| hash_code = (prime_number * hash_code) + char.ord }
+
+    hash_code % @capacity
+  end
+
+  def get_list(key)
+    bucket_index = hash(key)
+    validate_bucket(bucket_index)
+    @buckets[bucket_index]
+  end
+
+  def grow
+    @capacity *= 2
+    current_entries = entries
+    @buckets = Array.new(@capacity) { LinkedList.new }
+    current_entries.each do |key, value|
+      bucket_index = hash(key)
+      @buckets[bucket_index].append(key, value)
+    end
   end
 end
