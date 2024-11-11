@@ -1,4 +1,5 @@
 require_relative 'lib/hashmap'
+require_relative 'lib/hashset'
 
 test = HashMap.new
 
@@ -56,3 +57,28 @@ p HashMap.new.length
 p test.keys
 p test.values
 p test.entries
+
+hashset = HashSet.new
+hashset.add 'a'
+hashset.add 'b'
+
+hashset.add 'c'
+hashset.add 'd'
+hashset.add 'e'
+hashset.add 'f'
+hashset.add 'g'
+hashset.add 'h'
+hashset.add 'i'
+hashset.add '1'
+hashset.add '2'
+hashset.add '3'
+hashset.add '5'
+hashset.add '7'
+hashset.add 'edwxsa'
+
+puts hashset
+puts hashset.length
+hashset.add 'a'
+puts hashset.length
+puts hashset.has? '3'
+puts hashset.has? '4'
