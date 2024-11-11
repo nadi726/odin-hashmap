@@ -25,11 +25,14 @@ class HashMap
     hash_code % @capacity
   end
 
-  def set(key, value)
+  def get_list(key)
     bucket_index = hash(key)
     validate_bucket(bucket_index)
+    @buckets[bucket_index]
+  end
 
-    list = @buckets[bucket_index]
+  def set(key, value)
+    list = get_list key
     list_node = list.find(key)
 
     if list_node.nil?
@@ -37,5 +40,20 @@ class HashMap
     else
       list_node.value = value
     end
+  end
+
+  def get(key)
+    list = get_list key
+    list_node = list.find(key)
+    list_node&.value
+  end
+
+  def has?(key)
+    get_list(key)&.contains?(key) || false
+  end
+
+  def remove(key)
+    list = get_list key
+    list&.remove(key)
   end
 end

@@ -28,7 +28,7 @@ class LinkedList
     @head.size
   end
 
-  # Return the firsr node in the list
+  # Return the first node in the list
   attr_reader :head
 
   # Return the last node in the list
@@ -148,5 +148,25 @@ class LinkedList
     removed = prev_node.next_node
     prev_node.next_node = removed.next_node
     removed.value
+  end
+
+  def remove(key)
+    return if @head.nil?
+
+    if @head.key == key
+      value = @head.value
+      @head = nil
+      return value
+    end
+
+    node = @head
+    while node.next_node
+      if node.next_node.key == key
+        value = node.next_node.value
+        node.next_node = node.next_node.next_node
+        return value
+      end
+      node = node.next_node
+    end
   end
 end

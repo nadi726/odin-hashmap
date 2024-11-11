@@ -1,7 +1,7 @@
 require_relative 'lib/hashmap'
 
 test = HashMap.new
-puts test.hash('aaaa')
+
 test.set('apple', 'red')
 test.set('banana', 'yellow')
 test.set('carrot', 'orange')
@@ -18,4 +18,13 @@ test.set('lion', 'goldenROCK')
 test.set('hahahaha', 'ha')
 test.set('Bucket', 'ha')
 
-p test
+# p test
+p test.get('apple')
+p test.get('lion')
+p test.get('ha')
+
+p test.has?('kite')
+p test.has?('kitte')
+
+test.remove('lion')
+p test.get('lion')
