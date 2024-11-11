@@ -28,3 +28,6 @@ p test.has?('kitte')
 
 test.remove('lion')
 p test.get('lion')
+
+p test.length
+p HashMap.new.length

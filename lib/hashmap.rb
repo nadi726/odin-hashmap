@@ -56,4 +56,12 @@ class HashMap
     list = get_list key
     list&.remove(key)
   end
+
+  def length
+    @buckets.sum(&:size)
+  end
+
+  def clear
+    @buckets = Array.new(@capacity) { LinkedList.new }
+  end
 end
